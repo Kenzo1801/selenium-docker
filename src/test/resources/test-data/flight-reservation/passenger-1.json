@@ -1,0 +1,11 @@
+{
+	"firstName": "paul",
+	"lastName": "jack",
+	"email": "toto@zero.com",
+	"password": "pj",
+	"street": "123 gaimers",
+	"city": "ingolstadt",
+	"zip": "85057",
+	"passengersCount": "1",
+	"expectedPrice": "$584 USD"
+}

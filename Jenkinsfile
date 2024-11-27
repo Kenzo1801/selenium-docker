@@ -3,29 +3,21 @@ pipeline{
     agent any
 
     stages{
-        stage('stage-1'){
+        stage('Build Jar'){
             steps{
-                echo "doing mvn clean"
-                echo "doing mvn clean package"
+                bat "mvn clean package -DskipTests"
             }
         }
 
-        stage('stage-2'){
+        stage('Build Image'){
             steps{
-                echo "building docker image"
+                bat "docker build -t=katuo1801/jenkins-docker ."
             }            
         }
-        stage('stage-3'){
+        stage('Push Image'){
             steps{
-                echo "pushing docker image"
+                bat "docker push katuo1801/jenkins-docker"
             }            
         }
     }
-
-    post{
-        always{
-            echo "clean up resources"
-        }
-    }
-
 }

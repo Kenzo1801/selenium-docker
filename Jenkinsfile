@@ -20,9 +20,9 @@ pipeline{
                 DOCKER_HUB = credentials('dockerhub-credentials')
             }
             steps{
-                bat 'echo %DOCKER_HUB_PSW% | docker login -u %DOCKER_HUB_USR% --password-stdin'
-                bat 'echo %DOCKER_HUB_USR% '
+                bat 'echo %DOCKER_HUB_USR%'
                 bat 'echo %DOCKER_HUB_PSW%'
+                bat 'echo %DOCKER_HUB_PSW% | docker login -u %DOCKER_HUB_USR% --password-stdin'
                 bat "docker push katuo1801/jenkins-docker:latest"
                 bat "docker push katuo1801/jenkins-docker:${env.BUILD_NUMBER}"
             }            

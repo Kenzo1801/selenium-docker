@@ -11,7 +11,7 @@ pipeline{
 
         stage('Build Image'){
             steps{
-                bat "docker build -t=katuo1801/jenkins-docker:latest ."
+                bat "docker build -t=kenzo304/jenkins-docker:latest ."
             }            
         }
 
@@ -20,12 +20,11 @@ pipeline{
                 DOCKER_HUB = credentials('dockerhub-credentials')
             }
             steps{
-                bat 'echo %DOCKER_HUB_USR%'
-                bat 'echo %DOCKER_HUB_PSW%'
                 bat 'docker login -u %DOCKER_HUB_USR% -p %DOCKER_HUB_PSW%'
                 // bat 'echo %DOCKER_HUB_PSW% | docker login -u %DOCKER_HUB_USR% --password-stdin'
-                bat "docker push katuo1801/jenkins-docker:latest"
-                bat "docker push katuo1801/jenkins-docker:${env.BUILD_NUMBER}"
+                bat "docker push kenzo304/jenkins-docker:latest"
+                bat "docker tag kenzo304/jenkins-docker:latest kenzo304/jenkins-docker:${env.BUILD_NUMBER}"
+                bat "docker push kenzo304/jenkins-docker:${env.BUILD_NUMBER}"
             }            
         }
     }
